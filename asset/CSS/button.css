@@ -1,0 +1,40 @@
+.search-btn{
+background-color: white;
+  color: #2a9d8f;
+  border: 2px solid #2a9d8f;
+  padding: 10px 30px;
+  font-weight: bold;
+  /* A large radius creates the pill shape */
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.plus-btn {
+  background-color: #00c49a;
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  /* 50% radius on a square element makes a circle */
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  margin: 20px 0;
+}
+
+
+.account-btn {
+  background-color: #2d74da;
+  color: white;
+  border: 2px solid black;
+  padding: 15px 40px;
+  font-size: 18px;
+  cursor: pointer;
+  /* Optional */
+  box-shadow: 5px 5px 0px black;
+}
+  /* Optional */
+button:hover {
+  opacity: 0.8;
+}
