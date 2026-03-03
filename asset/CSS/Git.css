@@ -1,0 +1,41 @@
+h1{
+    text-align: center;          
+    margin-bottom: 40px;        
+    font-weight: bold;
+    font-size: 60px;
+}
+
+/* Flex container for all rows */
+.row {
+  display: flex;              /* Activate Flexbox */
+  padding: 40px;              
+  margin: 20px 0;             /* Space between rows */
+  align-items: center;        
+}
+
+/* Image size */
+img.octocat {
+  height: 200px;              /* Fixed image height */
+}
+
+/* Blue row */
+.row-blue {
+  background-color: #55acee;
+  justify-content: space-around; 
+}
+
+/* Pink row */
+.row-pink {
+  background-color: #d8a7b1;
+  justify-content: center;       /* Center items horizontally */
+}
+
+.row-pink img:first-child {
+  margin-right: 50px;           
+}
+
+/* White row */
+.row-white {
+  background-color: #ffffff;
+  justify-content: space-between; /* Space only between items */
+}
