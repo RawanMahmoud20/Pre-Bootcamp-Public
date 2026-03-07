@@ -1,0 +1,33 @@
+/* Container to hold the columns */
+.row {
+  display: flex;
+  gap: 10px; /* Optional: adds space between columns */
+  margin-bottom: 10px;
+}
+
+/* Base column: grows equally (1 unit) */
+.col {
+  flex: 1;
+  background-color: #5f9ea0; /* Matches the teal color in your image */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Column that takes up 2 units of space */
+.col-2 {
+  flex: 2;
+  background-color: #5f9ea0;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Column that takes up 3 units of space */
+.col-3 {
+  flex: 3;
+  background-color: #5f9ea0;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
