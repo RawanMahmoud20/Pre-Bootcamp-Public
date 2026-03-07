@@ -1,0 +1,55 @@
+/* Import Roboto if you want that exact look */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+/* 1. Main Container: Push Title to left and Links to right */
+.nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between; /* Pushes h1 and ul to opposite ends */
+    align-items: center;           /* Vertically centers everything */
+    padding: 10px 30px;
+}
+
+.nav-title {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* 2. Links Container: Make the list horizontal */
+.nav-links {
+    display: flex;
+    list-style: none;             /* Removes bullet points */
+    align-items: center;          /* Centers links and button vertically */
+    gap: 20px;                    /* Adds spacing between items */
+    margin: 0;
+    padding: 0;
+}
+
+/* 3. Link Styling */
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a.active {
+    color: white;
+    font-weight: bold;
+}
+
+/* 4. The Sign Out Button */
+.btn {
+    background-color: #00a8cc;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 9px 9px 3px rgba(0,0,0,0.3);
+}
