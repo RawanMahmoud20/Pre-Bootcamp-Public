@@ -1,0 +1,289 @@
+/* ========================= */
+/* Basic Reset Styles */
+/* ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set the default font and page background */
+body {
+    background-color: #f0f0f0; /* Light gray background for the whole page */
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* ========================= */
+/* Profile Card Styles */
+/* ========================= */
+.profile-card {
+    /* margin removed because spacing is handled by main-container */
+    width: 100%; /* Card takes full width of the column */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Top background section of the profile card */
+.header-bg {
+    background-color: #17a2b8; /* Teal header background */
+    height: 100px;
+    width: 100%;
+}
+
+/* Profile content section */
+.content {
+    padding: 20px;
+    position: relative;
+    padding-top: 50px; /* Space for the overlapping avatar */
+}
+
+/* Avatar container positioned above the header */
+.avatar-container {
+    position: absolute;
+    top: -50px; /* Move avatar upward to overlap header */
+    left: 20px;
+}
+
+/* Avatar image style */
+.avatar {
+    width: 70px;
+    height: 70px;
+    background-color: #000;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    object-fit: cover; /* Prevent image distortion */
+}
+
+/* User name */
+.name {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Location text */
+.location {
+    margin: 5px 0;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Location icon */
+.location i {
+    margin-right: 5px;
+    color: #666;
+}
+
+/* User description */
+.description {
+    margin: 15px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000;
+    font-weight: 500;
+}
+
+/* Edit profile link container */
+.edit-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Edit profile link */
+.edit-link a {
+    color: #006699;
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 450;
+}
+
+/* ========================= */
+/* Navigation Bar Styles */
+/* ========================= */
+.user-navbar {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 0;
+}
+
+/* Navbar content container */
+.nav-content {
+    max-width: 900px; /* Centered layout width */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo title */
+.nav-logo {
+    font-size: 24px;
+    margin-right: 30px;
+}
+
+/* Navigation menu list */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+/* Navigation links */
+.nav-menu a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+/* Hover effect for navigation links */
+.nav-menu a:hover {
+    color: #fff;
+}
+
+/* Active page link */
+.nav-menu a.index-active {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Logout button */
+.nav-logout-btn {
+    background-color: #17a2b8; /* Teal color */
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    cursor: pointer;
+    margin-left: auto; /* Push button to the far right */
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+/* ========================= */
+/* Two Column Layout */
+/* ========================= */
+.main-container {
+    max-width: 900px;
+    margin: 30px auto; /* Center the layout */
+    display: flex;
+    gap: 20px; /* Space between columns */
+}
+
+/* Left column (wider) */
+.column-left {
+    flex: 2;
+}
+
+/* Right column (narrower) */
+.column-right {
+    flex: 1;
+}
+
+/* ========================= */
+/* General Card Styles */
+/* ========================= */
+.user-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+
+/* Card header */
+.user-card-header {
+    background-color: #333;
+    color: #fff;
+    padding: 12px 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+/* Card body */
+.user-card-body {
+    padding: 15px;
+}
+
+/* Utility classes */
+.mt-20 {
+    margin-top: 20px;
+}
+
+.card-shadow {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-subtitle {
+    color: #888;
+    font-size: 13px;
+    margin: 3px 0;
+}
+
+/* ========================= */
+/* Connections Section */
+/* ========================= */
+
+/* Connection item */
+.connection-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee; /* Light divider */
+}
+
+/* Remove border from the last item */
+.connection-item:last-child {
+    border-bottom: none;
+}
+
+/* Small avatar */
+.mini-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #eee;
+}
+
+/* Accept / reject icons container */
+.connection-actions {
+    margin-left: auto; /* Push icons to the right */
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+}
+
+/* Accept icon */
+.action-yes {
+    color: #28a745;
+    cursor: pointer;
+}
+
+/* Reject icon */
+.action-no {
+    color: #dc3545;
+    cursor: pointer;
+}
+
+/* View more link */
+.view-more-link {
+    display: block;
+    margin-top: 10px;
+    color: #006699;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Badge counter in headers */
+.badge-count {
+    background-color: #999;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 12px;
+    margin-right: 8px;
+}
