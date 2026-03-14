@@ -43,8 +43,8 @@ body {
 /* Avatar container positioned above the header */
 .avatar-container {
     position: absolute;
-    top: -50px; /* Move avatar upward to overlap header */
-    left: 20px;
+    top: -35px; /* Move avatar upward to overlap header */
+    left: 25px;
 }
 
 /* Avatar image style */
