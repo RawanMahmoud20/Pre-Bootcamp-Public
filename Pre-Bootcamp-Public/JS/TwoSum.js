@@ -3,10 +3,10 @@ function twoSum(numbers, target) {
     const numMap = new Map();
     for (let i = 0; i < numbers.length; i++) {
         const complement = target - numbers[i];
-        if (numMap.has(complement)) {
-            return [numMap.get(complement), i];
+        if (numMap[complement] !== undefined) {
+            return [numMap[complement], i];
         }
-        numMap.set(numbers[i], i);
+        numMap[numbers[i]] = i;
     }
     return null;
 }
