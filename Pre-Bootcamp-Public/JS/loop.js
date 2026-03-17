@@ -1,5 +1,5 @@
 // Loop from 1 to 20, incrementing by 2
-    console.log("first loop ");
+ console.log("first loop ");
 
 for (let i = 1; i <= 20; i += 2) {
     console.log(i);

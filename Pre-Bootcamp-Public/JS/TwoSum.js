@@ -1,3 +1,25 @@
+
+// first solution by 2 for loops 
+function twoSumBruteForce(numbers, target) {
+  // loop 1 iterates through each number
+    for (let i = 0; i < numbers.length; i++) {
+        // loop 2 starts from the next number (i + 1)
+        for (let j = i + 1  ; j < numbers.length; j++) {
+            // check if the sum of the two numbers equals the target
+            if (numbers[i] + numbers[j] === target) {
+                return [i, j]; // return the indices of the two numbers
+            }
+        }
+    }
+    return null; // no solution found
+}
+
+const numss = [ 11, 2, 8 ,15 ];
+const targett = 10;
+console.log(twoSumBruteForce(numss, targett)); // Output: [1, 2]
+
+
+
 // Two Sum Problem
 function twoSum(numbers, target) {
     const numMap = new Map();
@@ -20,3 +42,5 @@ const nums = [2, 8, 11, 15];
 const target = 10;
 const result = twoSum(nums, target);
 console.log(result); // Output: [0, 1]
+
+

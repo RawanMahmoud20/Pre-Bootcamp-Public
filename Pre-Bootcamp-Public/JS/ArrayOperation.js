@@ -2,6 +2,7 @@
 let colors=["red","blue","green","yellow","purple"];
 console.log("First:", colors[0], "| Last:", colors[colors.length - 1]);
 console.log("Second position:", colors[1]);
+
 // Update array 
 colors[2] = "orange"; 
 console.log("Updated colors:", colors);
@@ -13,7 +14,7 @@ numbers.forEach(element => {
     console.log(element)
 });
 
-for(let i = numbers.length - 1; i >= 0; i--){
+for(let i = numbers.length - 1 ; i >= 0 ; i--){
   console.log("Reverse :", numbers[i]);
 }
 
@@ -59,6 +60,7 @@ let array2 =[4,5,6];
 let join= array1.concat(array2);
 console.log("Joined:", join);
 
+
 // Splitting 
 let items=["a","b","c","d","e"];
 let firstPart = items.slice(0, 3);
@@ -69,7 +71,7 @@ console.log("Second Part:", secondPart);
 
 //  Filtering
 let bigNumbers = [1, 5, 10, 15, 20, 25, 30];
-let FilterNumbers= bigNumbers.filter(num => num >15);
+let FilterNumbers= bigNumbers.filter(num => num > 15);
 console.log("Filtered Numbers:", FilterNumbers);
 
 
