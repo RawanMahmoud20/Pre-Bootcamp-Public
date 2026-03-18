@@ -30,6 +30,7 @@ function randomPizza() {
         var index = Math.floor(Math.random() * arr.length);
         return arr[index];
     }
+    
 
     // "Bake" the random pizza using our existing pizzaOven function
     return pizzaOven(
