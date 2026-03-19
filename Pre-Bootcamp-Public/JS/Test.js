@@ -86,7 +86,6 @@ console.log(getFeedback("z"));
 
 
 function countCharacters(str) {
-  // تعريف كائن النتيجة بالقيم الصفرية
   let counts = {
     vowels: 0,
     digits: 0,
@@ -94,7 +93,6 @@ function countCharacters(str) {
     others: 0
   };
 
-  // تعريف الحروف المتحركة (vowels) للتحقق منها
   const vowelsList = "aeiouAEIOU";
 
   for (let char of str) {
