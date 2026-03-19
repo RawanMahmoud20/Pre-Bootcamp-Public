@@ -84,7 +84,7 @@ console.log(getFeedback("z"));
 
 ///////
 
-
+const vowels = "aeiouAEIOU";
 function countCharacters(str) {
   let counts = {
     vowels: 0,
