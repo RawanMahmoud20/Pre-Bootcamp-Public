@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example of Change Event</title>
+    <link rel="">
+</head>
+<body>
+
+    <label>What would you like to eat?</label>
+    
+    <select onchange="chooseLunch(this)">
+        <option value="">-- Choose a meal --</option>
+        <option value="Tacos">Tacos</option>
+        <option value="Pasta">Pasta</option>
+        <option value="Sushi">Sushi</option>
+    </select>
+
+    <div class="card">
+    <p>Hello my name is:</p>
+    <h3 id="name-tag">Example</h3>
+   </div>
+
+    <input type="text" value="Example" oninput="setName(this)">
+
+  <form action="#">
+     <label for="first_name" >First Name: </label>
+        <input type="text" name="first_name" oninput="oninputChange(this)" id="first_name" />
+        <label for="language">Favourite Language: </label>
+<select name="language" id="language" onchange="onSelectLanguage(this)">            <option value="js">JavaScript</option>
+            <option value="py">Python</option>
+            <option value="csharp">C#</option>
+        </select>
+
+        <input type="submit" value="Submit" />
+    </form>
+<p>Your choice is: <span id="language_output"></span></p>
+<p id="OutputName"></p>    
+<script src="chan.js"></script>
+
+</body>
+</html>

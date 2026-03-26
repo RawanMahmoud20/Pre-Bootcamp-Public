@@ -1,0 +1,3 @@
+ body { font-family: sans-serif; padding: 20px; direction: ltr; }
+        select { padding: 10px; font-size: 16px; border-radius: 5px; }
+        label { font-weight: bold; margin-right: 10px; }
