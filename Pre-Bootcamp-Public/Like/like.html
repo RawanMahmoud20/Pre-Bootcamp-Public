@@ -4,14 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Like Button</title>
+    <link rel="stylesheet" href="./like.css">
 </head>
 <body>
 
-    <div class="card">
-        <h3>Some User</h3>
-        <p><span id="like-count">3</span> like(s)</p>
-        <p>This is some filler text, it can say anything we like</p>
-        <button id="like-btn">Like</button>
+    <div class="container">
+        <h1>Your Feed</h1>
+
+        <div class="main-content">
+            <div class="user-sidebar">
+                <div class="avatar-placeholder">👤</div>
+                <a href="#">Add an avatar</a>
+                <h3>James Doe</h3>
+            </div>
+
+            <div class="feed-section">
+                
+                <div class="post-card">
+                    <div class="post-header">
+                        <h3>Neil M</h3>
+                        <div class="likes-group">
+                            <span class="likes-counter" class="likes-counter" >9</span> like(s)
+                            <button class="like-btn" onclick="addLike(0)">Like</button>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>I just set up this new discord bot, let me know what you all think. <a href="#">link</a></p>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <h3>Nichole K</h3>
+                        <div class="likes-group">
+                            <span class="likes-counter" class="likes-counter" >12</span> like(s)
+                            <button class="like-btn" onclick="addLike(1)">Like</button>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Just finished my <a href="#">next comic</a>, check it out.</p>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <h3>Jim R</h3>
+                        <div class="likes-group">
+                            <span class="likes-counter" class="likes-counter" >9</span> like(s)
+                            <button class="like-btn" onclick="addLike(2)">Like</button>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>I can't stop listening to the <a href="#">new album</a>. Who else is liking it?</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <script src="./like.js"></script>
