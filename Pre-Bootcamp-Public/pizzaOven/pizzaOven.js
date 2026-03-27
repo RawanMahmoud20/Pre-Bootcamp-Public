@@ -18,7 +18,7 @@ console.log("Pizza 2:", p2);
 
 
 // randomPizza
-
+// عجينة و صوص و جبنة و اضافات عشوائية 
 var crusts = ["deep dish", "hand tossed", "thin and crispy", "cauliflower"];
 var sauces = ["traditional", "marinara", "white sauce", "pesto"];
 var cheeseOptions = ["mozzarella", "feta", "cheddar", "no cheese"];

@@ -70,7 +70,7 @@
                     <!-- Edit Profile Link -->
                     <div class="edit-link">
                         <img src="https://img.icons8.com/material-sharp/15/006699/settings.png" alt="gear">
-                        <a href="#">Edit Profile</a>
+                        <button onclick="toggleEditProfile(this)" class="editProfile">Edit Profile</button>
                     </div>
 
                 </div>
@@ -112,7 +112,7 @@
             <div class="user-card card-shadow">
 
                 <div class="user-card-header">
-                    <span class="badge-count">2</span> Connection Requests
+                    <span class="badge-count" id="request-count">2</span> Connection Requests
                 </div>
 
                 <div class="user-card-body">
@@ -123,8 +123,8 @@
                         <span>Developer Community</span>
 
                         <div class="connection-actions">
-                            <i class="fas fa-check-circle action-yes"></i>
-                            <i class="fas fa-times-circle action-no"></i>
+                            <i class="fas fa-check-circle action-yes" onclick="handleRequest(this, true)"></i>
+                            <i class="fas fa-times-circle action-no" onclick="handleRequest(this, false)"></i>
                         </div>
                     </div>
 
@@ -146,7 +146,7 @@
             <div class="user-card card-shadow mt-20">
 
                 <div class="user-card-header">
-                    <span class="badge-count">50+</span> Your Connections
+                    <span class="badge-count"  id="total-connections">50+</span> Your Connections
                 </div>
 
                 <div class="user-card-body">
@@ -172,6 +172,6 @@
         </div>
 
     </main>
-
+<script src="./profile.js"></script>
 </body>
 </html>
