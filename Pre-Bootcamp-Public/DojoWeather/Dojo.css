@@ -1,0 +1,129 @@
+/* =========================
+   General Body Styling
+========================= */
+body {
+    font-family: sans-serif;   /* Set the default font */
+    margin: 0;                 /* Remove default browser margin */
+    padding: 0;                /* Remove default browser padding */
+}
+
+
+/* =========================
+   Top Blue Navigation Bar
+========================= */
+nav {
+    background-color: #9ec5fe; /* Light blue background */
+    color: white;             /* White text color */
+    display: flex;            /* Use flexbox for layout */
+    justify-content: space-around; /* Space items evenly */
+    align-items: center;      /* Vertically center items */
+    padding: 10px 0;          /* Add vertical padding */
+}
+
+nav ul {
+    display: flex;            /* Display list items in a row */
+    list-style: none;         /* Remove bullet points */
+    gap: 20px;                /* Space between list items */
+    margin: 0;                /* Remove default margin */
+}
+
+nav ul li {
+    cursor: pointer;          /* Change cursor to pointer on hover */
+    font-weight: bold;        /* Make text bold */
+}
+
+
+/* =========================
+   Main Content Area
+========================= */
+main {
+    width: 80%;               /* Set content width */
+    margin: 20px auto;        /* Center horizontally with top spacing */
+}
+
+.city-header {
+    display: flex;            /* Align items in a row */
+    justify-content: space-between; /* Space between title and other content */
+    align-items: center;      /* Vertically align items */
+}
+
+
+/* =========================
+   Weather Forecast Cards
+========================= */
+.forecast {
+    display: flex;            /* Arrange cards in a row */
+    justify-content: space-between; /* Spread cards evenly */
+    gap: 15px;                /* Space between cards */
+    margin-top: 20px;         /* Space above forecast section */
+}
+
+.card {
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 20px;            /* Inner spacing */
+    text-align: center;       /* Center text */
+    flex: 1;                  /* Make all cards equal width */
+}
+
+.card img {
+    width: 80px;              /* Set image size */
+    margin: 15px 0;           /* Vertical spacing around image */
+}
+
+.temps {
+    font-size: 1.2em;         /* Slightly larger font */
+    font-weight: bold;        /* Bold temperature values */
+}
+
+.high { 
+    color: #f00;              /* Red color for high temperature */
+}
+
+.low {  
+    color: #00f;              /* Blue color for low temperature */
+}
+
+
+/* =========================
+   Fixed Cookie Consent Box
+========================= */
+#cookie-box {
+    position: fixed;          /* Fix it to the screen */
+    bottom: 20px;             /* Distance from bottom */
+    left: 10%;                /* Left spacing */
+    right: 10%;               /* Right spacing */
+    background-color: #eee;   /* Light background */
+    border: 3px solid black;  /* Black border */
+    
+    display: flex;            /* Use flexbox layout */
+    align-items: center;      /* Align items vertically */
+    justify-content: space-between; /* Space between text and button */
+    padding: 15px 30px;       /* Inner spacing */
+}
+
+
+/* Cookie icon and text alignment */
+.cookie-content {
+    display: flex;            /* Align image and text in a row */
+    align-items: center;      /* Vertically center them */
+    gap: 20px;                /* Space between image and text */
+}
+
+/* Remove extra spacing from heading and paragraph */
+#cookie-box h3, 
+#cookie-box p {
+    margin: 0;
+}
+
+
+/* =========================
+   Styled Accept Button
+========================= */
+#cookie-box button {
+    background-color: #9ec5fe; /* Blue background */
+    border: 2px solid black;   /* Black border */
+    padding: 8px 20px;         /* Button padding */
+    font-weight: bold;         /* Bold text */
+    box-shadow: 3px 3px 0px black; /* Black shadow effect */
+    cursor: pointer;           /* Pointer cursor on hover */
+}

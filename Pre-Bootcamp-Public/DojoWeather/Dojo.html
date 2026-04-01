@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>DojoWeather</title>
+    <link rel="stylesheet" href="./Dojo.css">
+</head>
+<body>
+    <nav>
+        <h1>DojoWeather</h1>
+        <ul>
+            <li onclick="loading()">Burbank</li>
+            <li onclick="loading()">Chicago</li>
+            <li onclick="loading()">Dallas</li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="city-header">
+            <h2>San Jose</h2>
+            <div class="temp-select">
+                <span>show temperature in </span>
+                <select onchange="convertTemp(this)">
+                    <option value="c">°C</option>
+                    <option value="f">°F</option>
+                </select>
+            </div>
+        </div>
+
+        <hr>
+<div class="forecast">
+    <div class="card">
+        <h3>Today</h3>
+        <img src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/3af/bd5/67a/some_rain.png" alt="rain">
+        <p>some rain</p>
+        <div class="temps">
+            <span class="high">24</span>° <span class="low">18</span>°
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Tomorrow</h3>
+        <img src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/f02/2e8/6ba/some_sun.png" alt="sun">
+        <p>some sun</p>
+        <div class="temps">
+            <span class="high">27</span>° <span class="low">19</span>°
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Friday</h3>
+        <img src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/c08/360/2bb/some_clouds.png" alt="clouds">
+        <p>some clouds</p>
+        <div class="temps">
+            <span class="high">21</span>° <span class="low">16</span>°
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Saturday</h3>
+        <img src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/f02/2e8/6ba/some_sun.png" alt="sun">
+        <p>some sun</p>
+        <div class="temps">
+            <span class="high">26</span>° <span class="low">21</span>°
+        </div>
+    </div>
+</div>
+    </main>
+
+    <div id="cookie-box">
+    <div class="cookie-content">
+        <img src="https://files.cdn.thinkific.com/file_uploads/906206/attachments/6ef/c41/f01/cookie.png" alt="cookie" style="width: 50px;">
+        <div>
+            <h3>Stop! Cookie time</h3>
+            <p>We use cookies (sadly not the edible ones) to personalize content and ads... <a href="#">Read more...</a></p>
+        </div>
+    </div>
+    <button onclick="acceptCookies()">I Accept</button>
+</div>
+    <script src="./Dojo.js"></script>
+</body>
+</html>
