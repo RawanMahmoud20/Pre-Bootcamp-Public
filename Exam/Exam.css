@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raboto' , sans-serif;
+}
+body {
+    background-color: #f0f0f0; /* Light gray background for the whole page */
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+/* Navbar Stickly Logic */
+
+#navbar{
+    position :Sticky; 
+    tap :0 ;
+    width:100%;
+    background-color: white;
+    display : flex ;
+    justify-content:space-between;
+    align-items: center;
+    padding: 10px;
+    box-shadow : 0 2px 10px rgba(0,0,0,0.1);
+    z-index :1000;
+}
+
+
+/* logo */
+.Logo{
+    display: flex;
+    align-items:center;
+    gap:10px;
+}
+
+#logo {
+    height :40px ;
+    width:30px;
+    object-fit:contain;
+}
+
+.nav-logo{
+font-size :22px ;
+color :  #1c3eb9;
+}
+.nav-menu {
+    list-style: none ; 
+    display : flex ;
+    gap :25px;
+}
+.nav-menu a {
+    color :  #2e53d6 ;
+    font-weight : 500  ;
+    transition : 00.3s;
+    padding-bottom:5px;
+}
+.index-active {
+    color: #3b4598 !important;
+    border-bottom :2px;
+    solid: #3b4598 ;
+
+}
+.nav-menu a:hover , .index-active {
+    color : #2b4598
+}
+
+
+/* hero section  */
+
+.hero {
+    display : flex ;
+    gap : 40px;
+    justify-content:space-between;
+    align-items: center;
+    padding: 60px 8%;
+    min-height : 450px;
+    /* transition : background-color 0.4s ease ; */
+}
+.hero-content{
+    flex: 1; 
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+.hero h1{
+    font-size:2.8rem;
+    margin-bottom : 30px;
+    max-width:500px; 
+    color :  #1c3eb9;
+}
+.hero-right{
+    background-color : white ; 
+}
+.hero p {
+    margin-bottom : 24px ;
+    line-height: 1.6;
+}
+
+button{
+
+ background-color :  #2b4598 ;
+    color :white; 
+    border : none ; 
+    padding : 17px 42px;
+
+    border-radius : 15px;
+    cursor : pointer ; 
+    font-size : 16px ;
+    /* transition : 0.3s;  */
+}
+.hero-img{
+    flex:1;
+}
+#heroimg{
+    width:100%;
+    max-width:500px;
+}
+button:hover {
+    background-color: #0f2467 ;
+} 
+
+/* service section */
+.service-section {
+    padding:60px;
+}
+.service-header{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom : 40px; 
+    border-bottom : 1px solid ;
+    padding-bottom :20px;
+}
+ 
+/*  */
+.service-card {
+    display : flex ;
+    flex-wrap: wrap;
+    gap : 20px;
+    justify-content:center;
+
+}
+
+.card{
+    padding:30px 8%;
+    width :300px;
+    flex: 1 1 250px;
+    text-align :center;
+    border : 1px solid #ddd; 
+    border-radius:12px; 
+    background-color :#fff;
+    max-height : auto
+}
+.card:hover{
+    box-shadow : 0 15px 30px rgba(0,0,0,0.08);
+}
+.card img {
+    width:200px ;
+    height : auto;
+    margin-bottom:25px;
+}
+.card p{
+    font-size : 1rem;
+    color : #555 ; 
+}
+
+.card span {
+    color: #da473f;
+    font-weight : bold;
+}
+.card .support {
+    
+    text-decoration:underline; 
+    color : #555 ;
+
+}
+/* .card4{
+    width :
+} */
