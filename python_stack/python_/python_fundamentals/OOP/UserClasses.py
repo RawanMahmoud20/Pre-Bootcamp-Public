@@ -74,7 +74,7 @@ class UserWithMultipleAccounts:
         return self
 
     def display_user_balance(self):
-        print(f" Accounts for {self.name} ")
+        print(f"Accounts for {self.name}")
         for type, acc in self.accounts.items():
             print(f"{type}: ${acc.balance}")
             acc.display_account_info()
