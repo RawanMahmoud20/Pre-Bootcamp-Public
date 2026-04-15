@@ -2,12 +2,12 @@
 const heroSection = document.querySelector(".hero");
 heroSection.addEventListener('mouseover', function () {
     this.style.backgroundColor ='#3b4598';
-    this.style.Color ='white';
+    this.style.color  ='white';
 
 });
 heroSection.addEventListener('mouseout', function () {
     this.style.backgroundColor ='transparent';
-    this.style.Color ='black';
+    this.style.color  ='black';
 });
 // 
 const mainBtn = document.querySelector(".hero button");
