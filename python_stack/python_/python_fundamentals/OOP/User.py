@@ -1,32 +1,52 @@
 class User:
-    def __init__(self, name , email):
+    def __init__(self, name, email):
         self.name = name
         self.email = email
         self.account_balance = 0
-        
-    
-    def make_deposit(self , amount):
+
+    def make_deposit(self, amount):
         self.account_balance += amount
-        return self
-    def make_withdrawal(self,amount):
+
+    def make_withdrawal(self, amount):
         self.account_balance -= amount
-        return self
-        
+
     def display_user_balance(self):
-        print(f"The User Is: {self.name} Hava a balance: {self.account_balance} ")
-        return self
-    def trasfer_money(self , other_user , amount):
+        print(f"The User Is: {self.name} Have a balance: {self.account_balance}")
+
+    def transfer_money(self, other_user, amount):
         self.account_balance -= amount
         other_user.account_balance += amount
         print(f"--- Transferring ${amount} from {self.name} to {other_user.name} ---")
-        return self
-        
 
-Rawan= User("Rawan", "Rawan@gmail.com")    
-shath= User("shath", "shath@gmail.com")    
-manar= User("manar", "manar@gmail.com")    
-Rawan.make_deposit(100).make_withdrawal(200).make_deposit(50).make_withdrawal(45).display_user_balance()
-shath.make_deposit(1000).make_deposit(1000).make_withdrawal(500).make_withdrawal(300).display_user_balance()
-manar.make_deposit(500).make_withdrawal(100).make_withdrawal(100).make_withdrawal(50).display_user_balance()
-shath.trasfer_money(Rawan, 200)
+
+# Users
+Rawan = User("Rawan", "Rawan@gmail.com")
+shath = User("shath", "shath@gmail.com")
+manar = User("manar", "manar@gmail.com")
+
+# Rawan operations
+Rawan.make_deposit(100)
+Rawan.make_withdrawal(200)
+Rawan.make_deposit(50)
+Rawan.make_withdrawal(45)
+Rawan.display_user_balance()
+
+# Shath operations
+shath.make_deposit(1000)
+shath.make_deposit(1000)
+shath.make_withdrawal(500)
+shath.make_withdrawal(300)
+shath.display_user_balance()
+
+# Manar operations
+manar.make_deposit(500)
+manar.make_withdrawal(100)
+manar.make_withdrawal(100)
+manar.make_withdrawal(50)
+manar.display_user_balance()
+
+# Transfer money
+shath.transfer_money(Rawan, 200)
+
+# Final balance
 Rawan.display_user_balance()
