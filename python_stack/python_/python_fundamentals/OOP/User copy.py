@@ -13,12 +13,16 @@ class User:
         return self
         
     def display_user_balance(self):
+        
         print(f"The User Is: {self.name} Hava a balance: {self.account_balance} ")
         return self
-    def trasfer_money(self , other_user , amount):
-        self.account_balance -= amount
-        other_user.account_balance += amount
-        print(f"--- Transferring ${amount} from {self.name} to {other_user.name} ---")
+    def transfer_money(self, other_user, amount):
+        if self.account_balance >= amount:
+            self.account_balance -= amount
+            other_user.account_balance += amount
+            print(f"Transferring ${amount} from {self.name} to {other_user.name}")
+        else:
+            print(f"Not enough balance for {self.name}")
         return self
         
 
@@ -36,7 +40,7 @@ manar.make_deposit(500).make_withdrawal(100).make_withdrawal(100).make_withdrawa
 
 # Transfer money
 
-shath.trasfer_money(Rawan, 200)
+shath.transfer_money(Rawan, 200)
 Rawan.display_user_balance()
 shath.display_user_balance()
 
