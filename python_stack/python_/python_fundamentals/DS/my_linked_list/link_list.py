@@ -44,6 +44,7 @@ class SList:
 if __name__ == "__main__":
     my_list = SList()
     my_list.add_to_front("are") \
-           .add_to_front("Linked lists") \
+         .add_to_front("Linked lists") \
            .add_to_back("fun!") \
            .print_values()
+           
