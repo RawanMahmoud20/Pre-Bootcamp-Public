@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkerboard</title>
+    <!-- Link to external CSS stylesheet via Flask's url_for -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Display board dimensions in the heading -->
+    <h1>Checkerboard {{ row }} x {{ col }}</h1>
+
+    <!-- Outer loop: iterate over each row -->
+    {% for r in range(0, row) %}
+        <div class="row">
+
+            <!-- Inner loop: iterate over each column in the current row -->
+            {% for c in range(0, col) %}
+
+                <!-- Alternating color logic: even sum = color_one, odd sum = color_two -->
+                {% if (r + c) % 2 == 0 %}
+                    <div class="box" style="background-color: {{color_one}};"></div>
+                {% else %}
+                    <div class="box" style="background-color: {{color_two}};"></div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+</body>
+</html>

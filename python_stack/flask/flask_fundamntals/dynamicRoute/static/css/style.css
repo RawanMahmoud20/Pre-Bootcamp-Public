@@ -1,0 +1,24 @@
+/* Remove default margin and padding from all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Each box is a fixed-size inline block (one cell of the board) */
+.box {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+}
+.row{
+    white-space: nowrap;
+    line-height: 0;
+    font-size: 0;
+}
+
+/* Remove line gaps between rows so boxes align perfectly */
+.row {
+    line-height: 0;
+}
