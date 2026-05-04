@@ -9,9 +9,11 @@
 <body>
 
     <!-- Display board dimensions in the heading -->
-    <h1>Checkerboard {{ row }} x {{ col }}</h1>
-
+<p>Size: {{ rows }} rows by {{ cols }} columns</p>
     <!-- Outer loop: iterate over each row -->
+   {% comment %}  
+   The outer loop is responsible for moving to the next line (rows vertically), while the inner loop is responsible for the columns horizontally in the current line.
+   {% endcomment %}
     {% for r in range(0, row) %}
         <div class="row">
 

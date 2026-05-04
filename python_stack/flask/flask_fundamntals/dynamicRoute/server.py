@@ -10,6 +10,7 @@ def index():
 
 
 # Single variable route: custom number of rows, 8 columns by default
+# /<int:x> to ensure the number passing in integer 
 @app.route('/<int:x>')
 def row_only(x):
     return render_template("index.html", row=x, col=8, color_one='red', color_two='black')
