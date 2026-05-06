@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dojo Fruit Store - Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5" style="max-width: 600px;">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h2>Thank you for your order!</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">We ordered {{ total_count }} items for you and charged your student account on {{ current_time }}.</p>
+                
+                <h4 class="mt-4">You've ordered:</h4>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Strawberry
+                        <span class="badge bg-secondary rounded-pill">{{ strawberry }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Raspberry
+                        <span class="badge bg-secondary rounded-pill">{{ raspberry }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Apple
+                        <span class="badge bg-secondary rounded-pill">{{ apple }}</span>
+                    </li>
+                </ul>
+
+                <h4 class="mt-4">Customer Details:</h4>
+                <p><strong>Name:</strong> {{ first_name }} {{ last_name }}</p>
+                <p><strong>Student ID:</strong> {{ student_id }}</p>
+
+                <div class="text-center mt-4">
+                    <a href="/" class="btn btn-primary">Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
