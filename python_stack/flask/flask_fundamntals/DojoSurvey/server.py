@@ -11,6 +11,11 @@ def index():
     return render_template('index.html')
 
 # Route to handle form submission (POST request only)
+
+
+
+
+
 @app.route('/result', methods=['POST'])
 def result():
     # Print form data in terminal (for debugging purposes)

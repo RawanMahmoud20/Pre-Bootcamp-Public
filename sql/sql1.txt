@@ -1,0 +1,21 @@
+-- 1. Create the Database
+-- CREATE DATABASE simple_blog_db;
+-- USE simple_blog_db;
+
+-- CREATE TABLE user (
+--     user_id INT AUTO_INCREMENT PRIMARY KEY,
+--     username VARCHAR(45) NOT NULL,
+--     email VARCHAR(255),
+--     password VARCHAR(32) NOT NULL,
+--     create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+
+-- CREATE TABLE category (
+--     category_id INT NOT NULL PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL
+-- );
+
+
+CREATE TABLE table1 (
+    id INT PRIMARY KEY
+);

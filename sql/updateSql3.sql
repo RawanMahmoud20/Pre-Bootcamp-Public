@@ -1,0 +1,71 @@
+-- 1. Create the Database
+-- CREATE DATABASE IF NOT EXISTS simple_blog_db;
+USE simple_blog_db;
+
+-- CREATE TABLE user (
+--     user_id INT AUTO_INCREMENT PRIMARY KEY,
+--     username VARCHAR(45) NOT NULL,
+--     email VARCHAR(255),
+--     password VARCHAR(32) NOT NULL,
+--     create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+
+-- CREATE TABLE category (
+--     category_id INT NOT NULL PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL
+-- );
+
+
+-- CREATE TABLE table1 (
+--     id INT PRIMARY KEY
+-- );
+-- CREATE TABLE posts (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     content TEXT NOT NULL,
+--     user_id INT, 
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE
+-- );
+-- CREATE TABLE likes (
+--     user_id INT,
+--     post_id INT,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     PRIMARY KEY (user_id, post_id),
+--     FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE
+-- );
+-- CREATE TABLE restaurants (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+-- CREATE TABLE reviews (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     content TEXT NOT NULL,           
+--     rating INT CHECK (rating >= 1 AND rating <= 5), -- عدد النجوم
+--     user_id INT,                    
+--     restaurant_id INT,               
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE,
+--     FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+-- );
+
+-- CREATE TABLE product_categories (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR(255) NOT NULL,
+--     parent_id INT DEFAULT NULL, 
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (parent_id) REFERENCES product_categories(id) ON DELETE CASCADE
+-- );
+-- CREATE TABLE belts (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     color VARCHAR(45) NOT NULL,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+CREATE TABLE user_belts (
+    user_id INT,
+    belt_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, belt_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (belt_id) REFERENCES belts(id) ON DELETE CASCADE
+);
