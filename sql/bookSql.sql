@@ -1,0 +1,16 @@
+USE simple_blog_db;
+-- CREATE TABLE books (
+   -- id INT AUTO_INCREMENT PRIMARY KEY,
+   -- title VARCHAR(255) NOT NULL,
+   -- author VARCHAR(255) NOT NULL, -- طلبوا نخلي اسم المؤلف داخل جدول الكتب مباشرة
+ --   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+CREATE TABLE favorites (belts
+    user_id INT,
+    book_id INT,
+    PRIMARY KEY (user_id, book_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
+);
+
+
