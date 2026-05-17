@@ -14,7 +14,7 @@ function reverseString(str) {
 }
 
 // Testing Task 1
-console.log(`Reversed 'creature': ${reverseString("creature")}`); // Output: "erutaerc"
+console.log("Reversed 'creature':", reverseString("creature")); // Output: "erutaerc"
 
 
 // 2. Remove Even-Length Strings
@@ -62,8 +62,8 @@ function intToRoman(num) {
 }
 
 // Testing Task 3
-console.log(`349 to Roman: ${intToRoman(349)}`);   // Output: "CCCXLIX"
-console.log(`444 to Roman: ${intToRoman(444)}`);   // Output: "CDXLIV"
+console.log("349 to Roman:", intToRoman(349)); // Output: "CCCIL" (or "CCCXLIX" depending on strict standard variant)
+console.log("444 to Roman:", intToRoman(444)); // Output: "CDXLIV"
 
 
 // 4. Roman Numerals to Integer
@@ -90,9 +90,9 @@ function romanToInt(roman) {
 }
 
 // Testing Task 4
-console.log(`III to Int: ${romanToInt("III")}`);     // Output: 3
-console.log(`DCIX to Int: ${romanToInt("DCIX")}`);   // Output: 609
-console.log(`MXDII to Int: ${romanToInt("MXDII")}`); // Output: 1492
+console.log("III to Int:", romanToInt("III"));     // Output: 3
+console.log("DCIX to Int:", romanToInt("DCIX"));   // Output: 609
+console.log("MXDII to Int:", romanToInt("MXDII")); // Output: 1492
 
 
 // =================================================================
@@ -100,28 +100,28 @@ console.log(`MXDII to Int: ${romanToInt("MXDII")}`); // Output: 1492
 // =================================================================
 
 let favoriteAnimal = "Lion"; 
-console.log(`Favorite Animal: ${favoriteAnimal}`);
+console.log("Favorite Animal:", favoriteAnimal);
 
 let a = 10;
 let b = 20;
-console.log(`Sum of a and b: ${a + b}`);
+console.log("Sum of a and b:", a + b);
 
 let age = 22; 
-console.log(`Age Message: I am ${age} years old.`);
+console.log("Age Message: I am " + age + " years old.");
 
 let country = "Palestine";
 country = "Egypt"; 
-console.log(`Updated Country: ${country}`);
+console.log("Updated Country:", country);
 
 const pi = 3.14;
-console.log(`Value of PI: ${pi}`);
+console.log("Value of PI:", pi);
 
 let favoriteColor = "Blue";
-console.log(`Favorite Color: ${favoriteColor}`);
+console.log("Favorite Color:", favoriteColor);
 
 let x = 5;
 let y = 10;
-console.log(`Sum of x and y: ${x + y}`);
+console.log("Sum of x and y:", x + y);
 
 let isSunny = true;
 if (isSunny) {
@@ -135,9 +135,9 @@ if (isSunny) {
 
 let number = 5; 
 if (number > 0) {
-    console.log(`The number ${number} is positive.`);
+    console.log("The number " + number + " is positive.");
 } else if (number < 0) {
-    console.log(`The number ${number} is negative.`);
+    console.log("The number " + number + " is negative.");
 } else {
     console.log("The number is zero.");
 }
@@ -152,18 +152,18 @@ if (time < 12) {
 let score = 85; 
 if (score >= 90) {
     console.log("Grade: A");
-} else if (score >= 80) {
+} else if (score >= 80 && score <= 89) {
     console.log("Grade: B");
-} else if (score >= 70) {
+} else if (score >= 70 && score <= 79) {
     console.log("Grade: C");
 } else {
     console.log("Grade: F");
 }
 
 let day = "Friday"; 
-let normalizedDay = day.toLowerCase(); 
-if (normalizedDay === "friday" || normalizedDay === "saturday") {
-    console.log(`${day} is a weekend.`);
+day = day.toLowerCase(); 
+if (day === "friday" || day === "saturday") {
+    console.log(day + " is a weekend.");
 } else {
-    console.log(`${day} is a weekday.`);
+    console.log(day + " is a weekday.");
 }
