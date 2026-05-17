@@ -21,6 +21,7 @@ console.log(country);
 const pi = 3.14;
 console.log(pi);
 
+
 // 6. Create a variable named favoriteColor and assign your favorite color to it. Print the value.
 let favoriteColor = "Blue";
 console.log(favoriteColor);
