@@ -5,6 +5,8 @@
 // =========================================================================
 function zipArraysIntoMap(keysArray, valuesArray) {
     let map = {};
+
+    
     
     for (let i = 0; i < keysArray.length; i++) {
         map[keysArray[i]] = valuesArray[i]; // pair each key with its matching value by index
