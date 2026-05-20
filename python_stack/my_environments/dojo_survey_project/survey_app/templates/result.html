@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey - Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 card p-4 shadow-sm">
+                <h2 class="text-center mb-4 text-success">Submitted Information</h2>
+                
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Dojo Location</th>
+                            <td>{{ location }}</td>
+                        </tr>
+                        <tr>
+                            <th>Favorite Language</th>
+                            <td>{{ language }}</td>
+                        </tr>
+                        <tr>
+                            <th>Gender (Ninja Bonus)</th>
+                            <td>{{ gender }}</td>
+                        </tr>
+                        <tr>
+                            <th>Interests (Sensei Bonus)</th>
+                            <td>
+                                {% if interests %}
+                                    <ul>
+                                        {% for interest in interests %}
+                                            <li>{{ interest }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    No interests selected.
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Comment</th>
+                            <td>{{ comment|default:"No comment provided." }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="/" class="btn btn-secondary w-100 mt-3">Go Back</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
