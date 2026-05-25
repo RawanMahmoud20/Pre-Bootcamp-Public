@@ -1,5 +1,5 @@
 """
-URL configuration for first_django project.
+URL configuration for Multiple_django project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path , include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('django_app.urls'))
-
-
+     path('admin/', admin.site.urls),
+    path('blogs/', include('blog_app.urls')),
+    path('surveys/', include('survey_app.urls')),
+    path('', include('users_app.urls')),
 ]
