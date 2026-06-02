@@ -8,3 +8,4 @@ def login_view(request):
 
 def index(request):
     return HttpResponse("placeholder to display all the list of users later.")
+
