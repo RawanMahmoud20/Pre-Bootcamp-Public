@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dojos & Ninjas</title></head>
+<body>
+
+    <div style="display:flex; gap:100px;">
+
+        <!-- Add a Dojo -->
+        <div>
+            <h2>Add a Dojo</h2>
+            <form action="/create_dojo" method="post">
+                {% csrf_token %}
+                Name: <input type="text" name="name"><br>
+                City: <input type="text" name="city"><br>
+                State: <input type="text" name="state"><br>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+
+        <!-- Add a Ninja -->
+        <div>
+            <h2>Add a Ninja</h2>
+            <form action="/create_ninja" method="post">
+                {% csrf_token %}
+                First Name: <input type="text" name="first_name"><br>
+                Last Name: <input type="text" name="last_name"><br>
+                Dojo:
+                <select name="dojo_id">
+                    {% for dojo in dojos %}
+                    <option value="{{ dojo.id }}">{{ dojo.name }}</option>
+                    {% endfor %}
+                </select><br>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+
+    </div>
+
+    <!-- All Dojos -->
+    <h2>All the Dojos</h2>
+    {% for dojo in dojos %}
+    <div>
+        <h3>
+            {{ dojo.name }} 
+            <!-- SENSEI BONUS: عداد النينجا -->
+            - Ninjas at the {{ dojo.name }}: {{ dojo.ninjas.count }}
+            <!-- NINJA BONUS: زر الحذف -->
+            <a href="/delete_dojo/{{ dojo.id }}">
+                <button>Delete Dojo</button>
+            </a>
+        </h3>
+        <ul>
+            {% for ninja in dojo.ninjas.all %}
+            <li>{{ ninja.first_name }} {{ ninja.last_name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+
+</body>
+</html>
