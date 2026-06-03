@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Ninja</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center min-vh-100">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow border-0 p-4">
+                    <div class="card-body">
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="card-title fw-bold text-danger m-0">🥷 Add a Ninja</h3>
+                            <a href="/" class="text-secondary text-decoration-none small">← Back</a>
+                        </div>
+
+                        {% if dojos %}
+                        <form action="/create_ninja" method="post">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label class="form-label text-secondary fw-semibold small text-uppercase">First Name</label>
+                                <input type="text" name="first_name" class="form-control" placeholder="e.g. John" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-secondary fw-semibold small text-uppercase">Last Name</label>
+                                <input type="text" name="last_name" class="form-control" placeholder="e.g. Smith" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label text-secondary fw-semibold small text-uppercase">Assign to Dojo</label>
+                                <select name="dojo_id" class="form-select" required>
+                                    {% for dojo in dojos %}
+                                    <option value="{{ dojo.id }}">{{ dojo.name }} — {{ dojo.city }}, {{ dojo.state }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-danger w-100 py-2 fw-semibold">Add Ninja</button>
+                        </form>
+
+                        {% else %}
+                        <div class="text-center py-4">
+                            <p class="text-muted">No dojos available.</p>
+                            <a href="/new_dojo" class="btn btn-outline-danger btn-sm">Create a dojo first →</a>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
