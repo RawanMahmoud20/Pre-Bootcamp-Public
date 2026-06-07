@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+
+    <a href="/books/" class="btn btn-secondary mb-4">← Back to Books</a>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h2 class="text-primary fw-bold">📖 {{ book.title }}</h2>
+            <p class="text-muted">ID: {{ book.id }}</p>
+            <p><span class="fw-semibold">Description:</span> {{ book.desc }}</p>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h4 class="fw-bold mb-3">👤 Authors</h4>
+            <ul class="list-group list-group-flush mb-3">
+                {% for author in book.authors.all %}
+                <li class="list-group-item">{{ author.first_name }} {{ author.last_name }}</li>
+                {% empty %}
+                <li class="list-group-item text-muted">No authors yet.</li>
+                {% endfor %}
+            </ul>
+
+            <h5 class="fw-semibold mt-3">Add an Author</h5>
+            <form action="/books/{{ book.id }}/add_author/" method="POST" class="d-flex gap-2">
+                {% csrf_token %}
+                <select name="author_id" class="form-select">
+                    {% for author in other_authors %}
+                    <option value="{{ author.id }}">{{ author.first_name }} {{ author.last_name }}</option>
+                    {% empty %}
+                    <option disabled>No more authors to add</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
