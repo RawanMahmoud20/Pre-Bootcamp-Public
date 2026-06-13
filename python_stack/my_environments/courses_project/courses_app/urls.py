@@ -1,0 +1,9 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index),                     
+    path('courses/create', views.create),      
+    path('courses/destroy/<int:id>', views.confirm_delete),
+    path('courses/destroy/<int:id>/confirm', views.destroy), 
+]
