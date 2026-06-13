@@ -7,6 +7,13 @@
 <body>
     <a href="/shows">Go Back</a>
     <h1>Edit Show {{ show.id }}</h1>
+    {% if messages %}
+        <ul style="color: red; list-style-type: square;">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <form action="/shows/{{ show.id }}/update" method="POST">
         {% csrf_token %}
         <p>Title: <input type="text" name="title" value="{{ show.title }}" required></p>
