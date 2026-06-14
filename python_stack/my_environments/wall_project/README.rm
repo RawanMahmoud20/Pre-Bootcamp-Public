@@ -1,0 +1,54 @@
+🔐 🏛️ CodingDojo: Login, Registration & The Wall System
+A fully integrated web application built with the Django framework, combining a user account management and protection system (login_app) with an interactive posts and comments wall (wall_app), implementing strict database relationships, security conditions, and time-based restrictions.
+
+🚀 Features
+1. Login & Account Management App (login_app):
+
+Fully Separated Pages: Independent and styled interfaces for both registration and login operations for better user experience.
+Strict Validation System (Backend Validations):
+
+First and last name (required, at least 2 characters, letters only).
+Email (valid format, checked for uniqueness in the database Ninja Bonus).
+Birthday and age (date must be in the past Ninja Bonus, user must be at least 13 years old to comply with COPPA child protection rules Sensei Bonus).
+Password (at least 8 characters, must match the confirmation field).
+
+
+Password Hashing: Full security protection for hashing and salting passwords using the bcrypt library before saving to the database.
+Flash Messages: Accurate and field-specific error notifications using Django's Tags system.
+
+2. Interactive Wall App (wall_app):
+
+Route Protection: Prevents any non-logged-in user from accessing the wall via direct URL and automatically redirects them to the home page.
+Posts and Comments: Ability to write posts and add comments on each post, with complete table separation in the database via a One-to-Many relationship.
+Chronological Order: Posts are displayed from newest to oldest (top of the page).
+Smart Delete Feature (Sensei Bonus): The delete button appears only on posts that the user wrote themselves, and they are only allowed to delete within 30 minutes of posting.
+
+
+🛠️ Tech Stack
+
+Backend: Python / Django 5.x
+Frontend: HTML5 / CSS3 / Bootstrap 5 (smooth and modern styling)
+Database: SQLite (built on the required ERD structure)
+Security: Bcrypt (password hashing) & Django Sessions (session management)
+
+
+📂 Project Structure
+textwall_project/
+│
+├── login_app/                # User management and validation app
+│   ├── templates/
+│   │   ├── register.html     # Account creation page
+│   │   └── login.html        # Standalone login page
+│   ├── models.py             # User model and UserManager for validations
+│   └── views.py              # Hashing, Sessions, and routing logic
+│
+├── wall_app/                 # Wall and comments app
+│   ├── templates/
+│   │   └── wall.html         # Interactive wall interface
+│   ├── models.py             # Message & Comment models linked to User
+│   └── views.py              # Post, comment, and 30-minute delete restriction logic
+│
+├── wall_project/             # Central project settings
+│   ├── settings.py           # App registration and session configuration
+│   └── urls.py               # Central project URLs
+└── manage.py
