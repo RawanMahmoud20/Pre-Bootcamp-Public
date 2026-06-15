@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 30px;">
+    <div style="max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #6f42c1; padding-bottom: 15px; margin-bottom: 30px;">
+            <h1 style="color: #6f42c1; margin: 0;">Admin Panel - Welcome, {{ current_user.first_name }}</h1>
+            <div>
+                <a href="/users/new" style="background-color: #28a745; color: white; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-weight: bold; margin-right: 10px;">+ Add User</a>
+                <a href="/logout" style="background-color: #dc3545; color: white; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-weight: bold;">Logout</a>
+            </div>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red; font-size: 14px;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <h3 style="color: #333;">All Users</h3>
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #dee2e6;">
+            <thead>
+                <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                    <th style="padding: 12px; text-align: left;">Name</th>
+                    <th style="padding: 12px; text-align: left;">Email</th>
+                    <th style="padding: 12px; text-align: left;">Level</th>
+                    <th style="padding: 12px; text-align: left;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in all_users %}
+                <tr style="border-bottom: 1px solid #dee2e6;">
+                    <td style="padding: 12px;">
+                        <a href="/users/show/{{ user.id }}" style="color: #007bff; text-decoration: none; font-weight: bold;">{{ user.first_name }} {{ user.last_name }}</a>
+                    </td>
+                    <td style="padding: 12px;">{{ user.email }}</td>
+                    <td style="padding: 12px;">
+                        <span style="background-color: {% if user.user_level == 'admin' %}#6f42c1{% else %}#6c757d{% endif %}; color: white; padding: 3px 10px; border-radius: 12px; font-size: 13px;">
+                            {{ user.user_level }}
+                        </span>
+                    </td>
+                    <td style="padding: 12px;">
+                        <a href="/users/edit/{{ user.id }}" style="color: #ffc107; font-weight: bold; text-decoration: none; margin-right: 10px;">Edit</a>
+                        {% if user.id != current_user.id %}
+                            <a href="/users/remove/{{ user.id }}" style="color: #dc3545; font-weight: bold; text-decoration: none;">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" style="padding: 20px; text-align: center; color: #888;">No users found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

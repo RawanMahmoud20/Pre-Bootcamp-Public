@@ -155,3 +155,14 @@ def user_profile(request, user_id):
     if 'user_id' not in request.session:
         return redirect('/')
     return render(request, 'profile.html', {'profile_user': User.objects.get(id=user_id)})
+
+def show_profile(request, user_id):
+    profile_user = User.objects.get(id=user_id)
+    
+    player_games = PlayerRole.objects.filter(user=profile_user) 
+    
+    context = {
+        'profile_user': profile_user,
+        'player_games': player_games 
+    }
+    return render(request, 'user_profile.html', context)
