@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Details</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 30px;">
+    <div style="max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #6f42c1; padding-bottom: 15px; margin-bottom: 30px;">
+            <h1 style="color: #6f42c1; margin: 0;">Welcome, {{ current_user.first_name }}</h1>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="/dashboard" style="color: #007bff; text-decoration: none; font-weight: bold;">Dashboard</a>
+                <a href="/logout" style="background-color: #dc3545; color: white; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-weight: bold;">Logout</a>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 40px;">
+            <div style="flex: 1;">
+                <p style="font-size: 16px; margin: 10px 0;"><strong>Game Name:</strong> {{ game.title }}</p>
+                <p style="font-size: 16px; margin: 10px 0;"><strong>Genre:</strong> {{ game.genre }}</p>
+                <p style="font-size: 16px; margin: 10px 0;"><strong>Description:</strong> {{ game.description }}</p>
+                <p style="font-size: 16px; margin: 10px 0;"><strong>Created By:</strong> 
+                    <a href="/profile/{{ game.creator.id }}" style="color: #6f42c1; font-weight: bold; text-decoration: none;">
+                        {{ game.creator.first_name }} {{ game.creator.last_name }}
+                    </a>
+                </p>
+
+                {% if game.creator.id == request.session.user_id %}
+                <div style="margin-top: 20px; display: flex; gap: 10px;">
+                    <a href="/games/{{ game.id }}/edit" style="background-color: #ffc107; color: #212529; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-weight: bold;">Edit</a>
+                    <a href="/games/{{ game.id }}/delete" style="background-color: #dc3545; color: white; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-weight: bold;">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div style="flex: 1;">
+                <h3 style="margin-top: 0; color: #333;">The players who like this game the most:</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 1px solid #dee2e6;">
+                    <thead>
+                        <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                            <th style="padding: 10px; text-align: left;">Player Name</th>
+                            <th style="padding: 10px; text-align: left;">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in players_roles %}
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 10px;">
+                                <a href="/profile/{{ item.user.id }}" style="color: #007bff; text-decoration: none;">
+                                    {{ item.user.first_name }} {{ item.user.last_name }}
+                                </a>
+                            </td>
+                            <td style="padding: 10px;">{{ item.role }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2" style="padding: 15px; text-align: center; color: #aaa; font-style: italic;">No players joined yet.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <form action="/games/{{ game.id }}/join" method="POST" style="background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #dee2e6;">
+                    {% csrf_token %}
+                    <label style="display: block; font-weight: bold; margin-bottom: 8px;">Join this Game As:</label>
+                    <div style="display: flex; gap: 10px;">
+                        <select name="role" style="flex: 2; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                            <option value="Carry">Carry</option>
+                            <option value="Supporter">Supporter</option>
+                            <option value="Mid laner">Mid laner</option>
+                            <option value="Off laner">Off laner</option>
+                            <option value="Jungler">Jungler</option>
+                        </select>
+                        <button type="submit" style="background-color: #6f42c1; color: white; padding: 8px 16px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Join</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

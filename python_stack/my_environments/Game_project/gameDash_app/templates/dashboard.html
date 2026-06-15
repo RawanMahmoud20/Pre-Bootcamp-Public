@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Dashboard</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 30px;">
+    <div style="max-width: 1100px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #6f42c1; padding-bottom: 15px; margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                {% if current_user.avatar %}
+                    <img src="{{ current_user.avatar.url }}" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #6f42c1;">
+                {% else %}
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background-color: #e9ecef; color: #6c757d; font-size: 24px; line-height: 50px; text-align: center; border: 2px solid #ccc; display: inline-block;">
+                        👤
+                    </div>
+                {% endif %}
+                <h1 style="color: #6f42c1; margin: 0;">Welcome, {{ current_user.first_name }} {{ current_user.last_name }}</h1>
+            </div>
+            
+            <a href="/logout" style="color: #dc3545; text-decoration: none; font-weight: bold; border: 1px solid #dc3545; padding: 8px 15px; border-radius: 4px; transition: 0.3s;">Logout</a>
+        </div>
+
+        <div style="display: flex; gap: 40px;">
+            <div style="flex: 2;">
+                <h3 style="color: #333; margin-top: 0;">Games</h3>
+                <table style="width: 100%; border-collapse: collapse; background: white; border: 1px solid #dee2e6;">
+                    <thead>
+                        <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #dee2e6;">Game Name</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #dee2e6;">Genre</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #dee2e6;">Release Date</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #dee2e6;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for game in all_games %}
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 12px;"><a href="/games/{{ game.id }}" style="color: #007bff; text-decoration: none; font-weight: bold;">{{ game.title }}</a></td>
+                            <td style="padding: 12px;">{{ game.genre }}</td>
+                            <td style="padding: 12px;">{{ game.release_date|date:"M d, Y" }}</td>
+                            <td style="padding: 12px;">
+                                {% if game.creator.id == request.session.user_id %}
+                                    <a href="/games/{{ game.id }}/edit" style="color: #ffc107; text-decoration: none; margin-right: 10px; font-weight: bold;">Edit</a>
+                                    <a href="/games/{{ game.id }}/delete" style="color: #dc3545; text-decoration: none; font-weight: bold;">Delete</a>
+                                {% else %}
+                                    <span style="color: #aaa; font-style: italic;">No Action</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" style="padding: 20px; text-align: center; color: #888;">No games available. Create one below!</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="flex: 1; background: #f8f9fa; padding: 20px; border-radius: 6px; border: 1px solid #dee2e6; height: fit-content;">
+                <h3 style="color: #6f42c1; margin-top: 0; border-bottom: 1px solid #ccc; padding-bottom: 8px;">Add a Game</h3>
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if not 'register' in message.tags and not 'login' in message.tags %}
+                            <p style="color: red; font-size: 14px;">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <form action="/games/new" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                    {% csrf_token %}
+                    <div>
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Game Name:</label>
+                        <input type="text" name="title" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Genre:</label>
+                        <select name="genre" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                            <option value="Action">Action</option>
+                            <option value="Strategy">Strategy</option>
+                            <option value="RPG">RPG</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Release Date:</label>
+                        <input type="date" name="release_date" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Description:</label>
+                        <textarea name="description" rows="4" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical;"></textarea>
+                    </div>
+                    <button type="submit" style="background-color: #ffc107; color: #212529; font-weight: bold; padding: 10px; border: none; border-radius: 4px; cursor: pointer;">Add</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

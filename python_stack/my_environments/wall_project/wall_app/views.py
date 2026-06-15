@@ -48,3 +48,6 @@ def delete_message(request, msg_id):
         else:
             messages.error(request, "You can only delete your message within 30 minutes of creation.")
     return redirect('/wall/')
+
+
+
