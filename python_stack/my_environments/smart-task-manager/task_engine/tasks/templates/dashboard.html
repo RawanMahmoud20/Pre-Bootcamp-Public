@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – Smart Task Manager</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="{% static 'tasks/css/style.css' %}" />
+</head>
+<body class="app-bg">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand fw-bold fs-5" href="{% url 'dashboard' %}">
+      <i class="bi bi-check2-circle me-1"></i> TaskEngine
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+        <li class="nav-item"><a class="nav-link active" href="{% url 'dashboard' %}"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'tasks' %}"><i class="bi bi-list-task me-1"></i>Tasks</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}"><i class="bi bi-info-circle me-1"></i>About</a></li>
+        <li class="nav-item">
+          <form method="post" action="{% url 'logout' %}" class="d-inline">
+            {% csrf_token %}
+            <button class="btn btn-outline-light btn-sm" type="submit">
+              <i class="bi bi-box-arrow-right me-1"></i>Logout
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid px-4 py-4">
+
+  <!-- Welcome -->
+  <div class="mb-4">
+    <h2 class="fw-bold mb-0">Welcome back, {{ request.user.username }} 👋</h2>
+    <p class="text-muted">Here's your workspace overview for today, {{ now|date:"F j, Y" }}.</p>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3">
+      <div class="kpi-card card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="kpi-icon bg-primary-subtle rounded-3 p-3">
+            <i class="bi bi-clipboard2-data fs-3 text-primary"></i>
+          </div>
+          <div>
+            <div class="kpi-value fw-bold fs-2">{{ total_tasks }}</div>
+            <div class="kpi-label text-muted small">Total Tasks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-3">
+      <div class="kpi-card card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="kpi-icon bg-warning-subtle rounded-3 p-3">
+            <i class="bi bi-arrow-repeat fs-3 text-warning"></i>
+          </div>
+          <div>
+            <div class="kpi-value fw-bold fs-2">{{ in_progress }}</div>
+            <div class="kpi-label text-muted small">In Progress</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-3">
+      <div class="kpi-card card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="kpi-icon bg-success-subtle rounded-3 p-3">
+            <i class="bi bi-check-circle fs-3 text-success"></i>
+          </div>
+          <div>
+            <div class="kpi-value fw-bold fs-2">{{ completed }}</div>
+            <div class="kpi-label text-muted small">Completed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-3">
+      <div class="kpi-card card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="kpi-icon bg-secondary-subtle rounded-3 p-3">
+            <i class="bi bi-hourglass-split fs-3 text-secondary"></i>
+          </div>
+          <div>
+            <div class="kpi-value fw-bold fs-2">{{ pending }}</div>
+            <div class="kpi-label text-muted small">Pending</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  {% if total_tasks > 0 %}
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between mb-2">
+        <span class="fw-semibold">Overall Completion Rate</span>
+        <span class="fw-bold text-success">
+          {% widthratio completed total_tasks 100 %}%
+        </span>
+      </div>
+      <div class="progress" style="height:12px;">
+        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+             style="width: {% widthratio completed total_tasks 100 %}%"></div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Upcoming deadlines -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-transparent border-bottom fw-semibold py-3">
+      <i class="bi bi-alarm me-1 text-danger"></i> Upcoming Deadlines (next 7 days)
+    </div>
+    <div class="card-body p-0">
+      {% if upcoming_with_days %}
+      <div class="table-responsive">
+        <table class="table table-hover mb-0 align-middle">
+          <thead class="table-light">
+            <tr>
+              <th class="ps-4">Task</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th class="pe-4">Days Left</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in upcoming_with_days %}
+            <tr>
+              <td class="ps-4 fw-medium">{{ item.task.title }}</td>
+              <td class="text-muted small">{{ item.task.due_date|date:"M j, Y · g:i A" }}</td>
+              <td>
+                <span class="badge rounded-pill
+                  {% if item.task.status == 'Pending' %}bg-secondary
+                  {% elif item.task.status == 'In Progress' %}bg-warning text-dark
+                  {% else %}bg-success{% endif %}">
+                  {{ item.task.status }}
+                </span>
+              </td>
+              <td class="pe-4">
+                <span class="fw-bold {% if item.days_left <= 1 %}text-danger{% elif item.days_left <= 3 %}text-warning{% else %}text-success{% endif %}">
+                  {% if item.days_left == 0 %}Due today
+                  {% elif item.days_left == 1 %}Tomorrow
+                  {% else %}{{ item.days_left }} days{% endif %}
+                </span>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="text-center py-5 text-muted">
+        <i class="bi bi-calendar-check display-5 d-block mb-2 text-success"></i>
+        <p class="mb-0">No deadlines in the next 7 days. Great work!</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

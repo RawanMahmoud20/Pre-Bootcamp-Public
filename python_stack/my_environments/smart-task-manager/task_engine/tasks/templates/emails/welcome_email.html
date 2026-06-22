@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Smart Task Manager</title>
+  <style>
+    body { margin: 0; padding: 0; background: #f4f6fb; font-family: 'Segoe UI', Arial, sans-serif; color: #2d3748; }
+    .wrapper { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+    .header { background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); padding: 40px 32px; text-align: center; }
+    .header h1 { margin: 0; color: #ffffff; font-size: 26px; font-weight: 700; letter-spacing: -.3px; }
+    .header p { margin: 8px 0 0; color: rgba(255,255,255,.8); font-size: 15px; }
+    .body { padding: 36px 32px; }
+    .greeting { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+    .body p { line-height: 1.7; margin: 0 0 16px; color: #4a5568; }
+    .cta-btn { display: inline-block; margin: 8px 0 24px; padding: 14px 32px; background: #0d6efd; color: #ffffff !important; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 15px; }
+    .features { background: #f7faff; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
+    .features h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .8px; color: #718096; margin: 0 0 12px; }
+    .feature-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+    .feature-dot { width: 8px; height: 8px; border-radius: 50%; background: #0d6efd; margin-top: 6px; flex-shrink: 0; }
+    .feature-item p { margin: 0; font-size: 14px; color: #4a5568; }
+    .footer { background: #f4f6fb; padding: 24px 32px; text-align: center; border-top: 1px solid #e2e8f0; }
+    .footer p { margin: 0; font-size: 13px; color: #a0aec0; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="header">
+      <h1>&#10003; Smart Task Manager</h1>
+      <p>Your workspace is ready.</p>
+    </div>
+
+    <div class="body">
+      <div class="greeting">Hi {{ user.username }},</div>
+      <p>
+        Welcome aboard! Your account has been successfully created and your private workspace
+        is now live. We're thrilled to have you as part of the Smart Task Manager community.
+      </p>
+
+      <a href="#" class="cta-btn">Go to My Dashboard</a>
+
+      <div class="features">
+        <h3>What you can do right now</h3>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <p><strong>Create tasks</strong> — add titles, descriptions, due dates, and categories from the Task Workspace.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <p><strong>Track progress</strong> — move tasks through Pending → In Progress → Completed without page reloads.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <p><strong>Monitor deadlines</strong> — your dashboard highlights tasks due in the next 7 days with real-time countdowns.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <p><strong>Organize with categories</strong> — tag tasks as Work, Personal, Urgent, and more for fast filtering.</p>
+        </div>
+      </div>
+
+      <p>
+        If you have any questions or need help getting started, just reply to this email and
+        our team will be happy to assist.
+      </p>
+
+      <p>
+        Happy tasking,<br />
+        <strong>The Smart Task Manager Team</strong>
+      </p>
+    </div>
+
+    <div class="footer">
+      <p>This message was sent to {{ user.email }}. You're receiving this because you just created an account.</p>
+      <p style="margin-top:6px;">&copy; 2026 Smart Task Manager. All rights reserved.</p>
+    </div>
+
+  </div>
+</body>
+</html>

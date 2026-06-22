@@ -1,0 +1,125 @@
+/* ========================================================
+   Smart Task Manager – Global Stylesheet
+   ======================================================== */
+
+/* ---- Base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+/* ---- Backgrounds ---- */
+.auth-bg {
+  background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+  min-height: 100vh;
+}
+
+.app-bg {
+  background: #f0f4fa;
+  min-height: 100vh;
+}
+
+/* ---- Auth page ---- */
+.auth-tab {
+  background: #f8f9fa;
+  color: #6c757d;
+  transition: background .2s, color .2s;
+  border-bottom: 3px solid transparent;
+}
+
+.auth-tab.active {
+  background: #ffffff;
+  color: #0d6efd;
+  border-bottom-color: #0d6efd;
+}
+
+.auth-tab:hover:not(.active) {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.brand-gradient {
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- KPI cards ---- */
+.kpi-card {
+  transition: transform .2s, box-shadow .2s;
+  border-radius: 12px !important;
+}
+
+.kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.10) !important;
+}
+
+.kpi-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kpi-value { line-height: 1; }
+
+/* ---- Task cards ---- */
+.task-card {
+  border-radius: 12px !important;
+  transition: box-shadow .15s;
+}
+
+.task-card:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,.09) !important;
+}
+
+.task-card-wrapper.hidden { display: none !important; }
+
+/* ---- Spinning refresh icon ---- */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.spin { display: inline-block; animation: spin 1.4s linear infinite; }
+
+/* ---- Filter buttons ---- */
+.filter-btn {
+  border-radius: 20px !important;
+  padding: 4px 16px !important;
+  font-size: .82rem;
+  transition: all .15s;
+}
+
+/* ---- Tech cards (About page) ---- */
+.tech-card {
+  border-radius: 12px !important;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.tech-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.1) !important;
+}
+
+/* ---- About hero ---- */
+.about-hero {
+  background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+}
+
+/* ---- Schema boxes ---- */
+.schema-box code { font-size: .75rem; word-break: break-word; }
+
+/* ---- Navbar shadow ---- */
+.navbar { box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+
+/* ---- Toast ---- */
+#toast-notify { min-width: 220px; border-radius: 8px; }
+
+/* ---- Responsive tweaks ---- */
+@media (max-width: 576px) {
+  .kpi-value { font-size: 1.6rem !important; }
+}

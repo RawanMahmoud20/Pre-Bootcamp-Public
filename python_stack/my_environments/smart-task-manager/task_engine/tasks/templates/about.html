@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Smart Task Manager</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="{% static 'tasks/css/style.css' %}" />
+</head>
+<body class="app-bg">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand fw-bold fs-5" href="{% url 'dashboard' %}">
+      <i class="bi bi-check2-circle me-1"></i> TaskEngine
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'tasks' %}"><i class="bi bi-list-task me-1"></i>Tasks</a></li>
+        {% endif %}
+        <li class="nav-item"><a class="nav-link active" href="{% url 'about' %}"><i class="bi bi-info-circle me-1"></i>About</a></li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <form method="post" action="{% url 'logout' %}" class="d-inline">
+            {% csrf_token %}
+            <button class="btn btn-outline-light btn-sm" type="submit">
+              <i class="bi bi-box-arrow-right me-1"></i>Logout
+            </button>
+          </form>
+        </li>
+        {% else %}
+        <li class="nav-item"><a class="btn btn-outline-light btn-sm" href="{% url 'auth' %}">Sign In</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="about-hero text-white py-5 mb-0">
+  <div class="container text-center py-3">
+    <h1 class="display-5 fw-bold mb-2">Smart Task Management System</h1>
+    <p class="lead opacity-75 mx-auto" style="max-width:620px;">
+      A full-stack productivity platform built on Django MVT architecture,
+      designed to help individuals track, prioritise, and complete work with clarity.
+    </p>
+  </div>
+</div>
+
+<div class="container py-5">
+
+  <!-- Mission -->
+  <div class="row align-items-center mb-5 g-4">
+    <div class="col-lg-6">
+      <h2 class="fw-bold mb-3">Our Engineering Goals</h2>
+      <ul class="list-unstyled mb-0">
+        <li class="d-flex gap-2 mb-3">
+          <i class="bi bi-bullseye text-primary fs-5 flex-shrink-0 mt-1"></i>
+          <span><strong>Workspace Isolation</strong> — every user's tasks are strictly scoped to their own workspace with FK-enforced ownership checks at every query.</span>
+        </li>
+        <li class="d-flex gap-2 mb-3">
+          <i class="bi bi-lightning-charge text-warning fs-5 flex-shrink-0 mt-1"></i>
+          <span><strong>AJAX-First UX</strong> — status changes, creates, and deletes happen asynchronously via the Fetch API without full page reloads.</span>
+        </li>
+        <li class="d-flex gap-2 mb-3">
+          <i class="bi bi-shield-lock text-success fs-5 flex-shrink-0 mt-1"></i>
+          <span><strong>Security by Default</strong> — CSRF tokens on every mutating request, server-side ownership guards, and input sanitisation throughout.</span>
+        </li>
+        <li class="d-flex gap-2">
+          <i class="bi bi-envelope-check text-info fs-5 flex-shrink-0 mt-1"></i>
+          <span><strong>Transactional Emails</strong> — welcome messages and deadline alerts dispatched via Django's email framework with an HTML template layer.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="card-body p-0">
+          <table class="table table-bordered mb-0">
+            <thead class="table-primary">
+              <tr><th colspan="2" class="text-center py-2">Architecture Milestones</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><i class="bi bi-check2 text-success me-1"></i>Custom AbstractUser model</td><td class="text-muted small">Workspace ownership</td></tr>
+              <tr><td><i class="bi bi-check2 text-success me-1"></i>Modular models package</td><td class="text-muted small">5 dedicated ORM files</td></tr>
+              <tr><td><i class="bi bi-check2 text-success me-1"></i>Explicit M2M bridge model</td><td class="text-muted small">Task ↔ Category</td></tr>
+              <tr><td><i class="bi bi-check2 text-success me-1"></i>TaskAssignment journal</td><td class="text-muted small">Audit log of assignments</td></tr>
+              <tr><td><i class="bi bi-check2 text-success me-1"></i>AJAX CRUD engine</td><td class="text-muted small">Fetch API + CSRF</td></tr>
+              <tr><td><i class="bi bi-check2 text-success me-1"></i>Live filter + search</td><td class="text-muted small">Client-side, zero reload</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech stack -->
+  <h2 class="fw-bold text-center mb-4">Integrated Tech Stack</h2>
+  <div class="row g-3 mb-5">
+    {% for tech in tech_stack %}
+    <div class="col-6 col-md-4 col-lg-2">
+      <div class="card border-0 shadow-sm text-center h-100 py-3 px-2 tech-card">
+        <i class="bi {{ tech.icon }} fs-2 mb-2 text-primary"></i>
+        <div class="fw-semibold small">{{ tech.name }}</div>
+        <div class="text-muted" style="font-size:.72rem;">{{ tech.role }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- DB schema summary -->
+  <div class="card border-0 shadow-sm rounded-4 mb-5">
+    <div class="card-header bg-transparent border-bottom fw-semibold py-3">
+      <i class="bi bi-diagram-3 me-1 text-primary"></i> Relational Schema Overview
+    </div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+          <div class="schema-box p-3 rounded-3 bg-primary-subtle border border-primary-subtle h-100">
+            <h6 class="fw-bold"><i class="bi bi-person-circle me-1"></i>users</h6>
+            <code class="small d-block text-muted">id · username · email · password</code>
+            <p class="small mb-0 mt-1">Custom AbstractUser — anchors workspace ownership.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="schema-box p-3 rounded-3 bg-warning-subtle border border-warning-subtle h-100">
+            <h6 class="fw-bold"><i class="bi bi-card-list me-1"></i>tasks</h6>
+            <code class="small d-block text-muted">id · title · description · due_date · status · user_id(FK)</code>
+            <p class="small mb-0 mt-1">Core entity. Status: Pending → In Progress → Completed.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="schema-box p-3 rounded-3 bg-info-subtle border border-info-subtle h-100">
+            <h6 class="fw-bold"><i class="bi bi-tags me-1"></i>categories</h6>
+            <code class="small d-block text-muted">id · name</code>
+            <p class="small mb-0 mt-1">Work, Personal, Urgent — classification metadata.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="schema-box p-3 rounded-3 bg-success-subtle border border-success-subtle h-100">
+            <h6 class="fw-bold"><i class="bi bi-people me-1"></i>task_assignments</h6>
+            <code class="small d-block text-muted">id · task_id(FK) · user_id(FK) · assigned_at</code>
+            <p class="small mb-0 mt-1">Audit log: who was assigned to which task and when.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="schema-box p-3 rounded-3 bg-secondary-subtle border border-secondary-subtle h-100">
+            <h6 class="fw-bold"><i class="bi bi-intersect me-1"></i>task_categories</h6>
+            <code class="small d-block text-muted">id · task_id(FK) · category_id(FK)</code>
+            <p class="small mb-0 mt-1">Explicit junction — models M2M without Django's auto table.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="text-center py-4 text-muted border-top small">
+  &copy; 2026 Smart Task Manager &mdash; Built with Django &amp; Bootstrap 5
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Tech stack data injected inline to keep the view clean
+</script>
+</body>
+</html>
