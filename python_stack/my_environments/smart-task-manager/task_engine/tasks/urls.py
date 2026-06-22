@@ -14,4 +14,8 @@ urlpatterns = [
     path('api/tasks/<int:pk>/status/', views.task_update_status, name='task_update_status'),
     path('api/tasks/<int:pk>/edit/', views.task_edit, name='task_edit'),
     path('api/tasks/<int:pk>/delete/', views.task_delete, name='task_delete'),
+    # Category endpoints
+    path('api/categories/', views.category_list_json, name='category_list_json'),
+    path('api/categories/create/', views.category_create, name='category_create'),
+    path('api/categories/<int:pk>/delete/', views.category_delete, name='category_delete'),
 ]

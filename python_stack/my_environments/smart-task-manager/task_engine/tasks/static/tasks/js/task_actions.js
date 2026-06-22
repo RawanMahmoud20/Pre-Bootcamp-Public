@@ -53,10 +53,9 @@ function updateStatus(taskId, newStatus, event) {
 
 // ---- Refresh a single card in-place ----
 function refreshTaskCard(taskId, task) {
-  const wrapper = document.querySelector(`.task-card-wrapper[data-status]`);
   // Simplest reliable approach: reload the list from the server
   // so the rendered card HTML is always in sync with Django templates.
-  reloadTaskList();
+reloadTaskList();
 }
 
 // ---- Reload full task list via AJAX ----
@@ -108,7 +107,12 @@ function renderTaskCards(tasks) {
       `<span class="badge bg-info-subtle text-info rounded-pill small">${escHtml(c)}</span>`
     ).join(' ');
 
-    const catIds = ''; // Edit modal populated via openEditModal
+    const catIdsArray = t.category_ids ? t.category_ids : []; 
+
+    // تحويل البيانات لنصوص آمنة داخل الـ HTML لتجنب تضارب علامات التنصيص
+    const safeTitle = escHtml(t.title).replace(/'/g, "&#39;");
+    const safeDesc = escHtml(t.description || '').replace(/'/g, "&#39;");
+    const safeDate = t.due_date ? t.due_date.substring(0, 16) : ''; // للتوافق مع datetime-local
 
     return `
     <div class="col-12 task-card-wrapper" data-status="${escHtml(t.status)}" data-title="${escHtml(t.title.toLowerCase())}">
@@ -138,10 +142,12 @@ function renderTaskCards(tasks) {
                 <li><a class="dropdown-item" href="#" onclick="updateStatus(${t.id}, 'Completed', event)"><i class="bi bi-check-circle me-2 text-success"></i>Completed</a></li>
               </ul>
             </div>
+            
             <button class="btn btn-sm btn-outline-secondary" title="Edit"
-                    onclick="openEditModal(${t.id}, ${JSON.stringify(t.title)}, ${JSON.stringify(t.description)}, ${JSON.stringify(t.due_date)}, [])">
+                    onclick="openEditModal(${t.id}, '${safeTitle}', '${safeDesc}', '${safeDate}', ${JSON.stringify(catIdsArray)})">
               <i class="bi bi-pencil"></i>
             </button>
+            
             <button class="btn btn-sm btn-outline-danger" title="Delete" onclick="deleteTask(${t.id})">
               <i class="bi bi-trash3"></i>
             </button>

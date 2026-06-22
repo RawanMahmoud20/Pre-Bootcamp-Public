@@ -1,5 +1,6 @@
 import json
 from datetime import timedelta
+import re
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -57,11 +58,15 @@ def auth_view(request):
                 messages.error(request, 'Email already registered.')
                 return render(request, 'auth.html', {'form_mode': 'register'})
 
+            if not re.match(r'^[^@]+@[^@]+\.[^@]+$', email):
+                messages.error(request, 'Enter a valid email address.')
+                return render(request, 'auth.html', {'form_mode': 'register'})
+
             user = User.objects.create_user(username=username, email=email, password=password1)
             _send_welcome_email(user)
             login(request, user)
             return redirect('dashboard')
-
+            
     return render(request, 'auth.html', {'form_mode': 'login'})
 
 
@@ -127,7 +132,7 @@ def dashboard_view(request):
 
 @login_required(login_url='/')
 def tasks_view(request):
-    categories = Category.objects.all()
+    categories = Category.objects.filter(user=request.user)
     tasks = (
         Task.objects.filter(user=request.user)
         .prefetch_related('task_categories__category', 'assignments')
@@ -250,6 +255,7 @@ def task_list_json(request):
 
 def _task_to_dict(task):
     cats = [tc.category.name for tc in task.task_categories.select_related('category').all()]
+    cat_ids = [tc.category.id for tc in task.task_categories.all()]
     return {
         'id': task.pk,
         'title': task.title,
@@ -257,7 +263,45 @@ def _task_to_dict(task):
         'due_date': task.due_date if isinstance(task.due_date, str) else (task.due_date.strftime('%Y-%m-%dT%H:%M') if task.due_date else ''),
         'status': task.status,
         'categories': cats,
+        'category_ids': cat_ids,
     }
+
+
+# ---------------------------------------------------------------------------
+# AJAX — Category CRUD
+# ---------------------------------------------------------------------------
+
+@login_required(login_url='/')
+def category_list_json(request):
+    cats = Category.objects.filter(user=request.user).order_by('name')
+    return JsonResponse({'categories': [{'id': c.pk, 'name': c.name} for c in cats]})
+
+
+@login_required(login_url='/')
+@require_POST
+def category_create(request):
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Invalid JSON.'}, status=400)
+
+    name = data.get('name', '').strip()
+    if not name:
+        return JsonResponse({'error': 'Name is required.'}, status=400)
+
+    if Category.objects.filter(user=request.user, name__iexact=name).exists():
+        return JsonResponse({'error': 'Category already exists.'}, status=400)
+
+    cat = Category.objects.create(name=name, user=request.user)
+    return JsonResponse({'success': True, 'category': {'id': cat.pk, 'name': cat.name}}, status=201)
+
+
+@login_required(login_url='/')
+@require_POST
+def category_delete(request, pk):
+    cat = get_object_or_404(Category, pk=pk, user=request.user)
+    cat.delete()
+    return JsonResponse({'success': True})
 
 
 # ---------------------------------------------------------------------------
